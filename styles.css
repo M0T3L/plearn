@@ -24,6 +24,7 @@ body {
     padding: 20px;
     position: fixed;
     height: 100vh;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -32,16 +33,18 @@ body {
 }
 
 .logo img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
+    border: 3px solid #3498db;
 }
 
 .logo h2 {
     color: #ecf0f1;
     font-size: 24px;
+    font-weight: 600;
 }
 
 .nav-links {
@@ -57,19 +60,26 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 16px;
 }
 
 .nav-links a i {
-    margin-right: 10px;
+    margin-right: 12px;
     width: 20px;
+    font-size: 18px;
 }
 
-.nav-links li.active a,
+.nav-links li.active a {
+    background-color: #3498db;
+    color: white;
+}
+
 .nav-links a:hover {
     background-color: #34495e;
+    transform: translateX(5px);
 }
 
 /* Main Content Styles */
@@ -83,57 +93,181 @@ body {
 .top-bar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+    align-items: flex-start;
+    padding: 25px;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     margin-bottom: 30px;
 }
 
-.search-bar {
-    position: relative;
-    width: 300px;
+.greeting {
+    flex: 1;
 }
 
-.search-bar input {
-    width: 100%;
-    padding: 10px 35px 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    outline: none;
+.greeting h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 15px;
 }
 
-.search-bar i {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+.upcoming-tasks {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+}
+
+.upcoming-tasks h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.upcoming-tasks ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.upcoming-tasks li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    color: #34495e;
+    font-size: 15px;
+}
+
+.upcoming-tasks li i {
+    margin-right: 10px;
+    color: #3498db;
+}
+
+.upcoming-tasks .quick-links {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.upcoming-tasks .quick-links .btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.upcoming-tasks .quick-links .btn i {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.upcoming-tasks .quick-links .btn.primary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+.upcoming-tasks .quick-links .btn.secondary {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.upcoming-tasks .quick-links .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.upcoming-tasks .quick-links .btn:hover i {
+    transform: scale(1.1);
+}
+
+.upcoming-tasks .quick-links .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.upcoming-tasks .course-info {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.upcoming-tasks .course-info h4 {
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.upcoming-tasks .course-info p {
     color: #7f8c8d;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .user-menu {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 .notifications {
-    font-size: 1.2em;
+    font-size: 1.4em;
     color: #7f8c8d;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.notifications:hover {
+    color: #3498db;
 }
 
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 25px;
 }
 
 .user-profile img {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    border: 2px solid #3498db;
+}
+
+.user-profile span {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
 }
 
 /* Course Content Styles */
@@ -298,11 +432,11 @@ body {
 @media (max-width: 768px) {
     .sidebar {
         width: 70px;
-        padding: 10px;
+        padding: 15px 10px;
     }
 
     .sidebar .logo h2,
-    .sidebar .nav-links span {
+    .nav-links a span {
         display: none;
     }
 
@@ -310,26 +444,44 @@ body {
         margin-left: 70px;
     }
 
-    .nav-links a {
-        justify-content: center;
-    }
-
-    .nav-links a i {
-        margin: 0;
-    }
-
-    .search-bar {
-        width: 200px;
-    }
-
-    .detail-header {
+    .top-bar {
         flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
+        gap: 20px;
     }
 
-    .back-button {
+    .user-profile span {
+        display: none;
+    }
+
+    .upcoming-tasks .quick-links {
+        flex-direction: column;
+    }
+
+    .upcoming-tasks .quick-links .btn {
         width: 100%;
-        justify-content: center;
+        padding: 15px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar {
+        padding: 15px;
+    }
+
+    .greeting h2 {
+        font-size: 24px;
+    }
+
+    .upcoming-tasks {
+        padding: 15px;
+    }
+
+    .upcoming-tasks .quick-links {
+        flex-direction: column;
+    }
+
+    .upcoming-tasks .quick-links .btn {
+        width: 100%;
+        padding: 15px 20px;
     }
 } 

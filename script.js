@@ -1,5 +1,97 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Navigation active state
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.parentElement.classList.add('active');
+        }
+    });
+
+    // Notifications click handler
+    const notifications = document.querySelector('.notifications');
+    if (notifications) {
+        notifications.addEventListener('click', function() {
+            alert('Yeni bildirim bulunmamaktadır');
+        });
+    }
+
+    // Logout button handler
+    const logoutBtn = document.querySelector('.logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            if (confirm('Çıkış yapmak istediğinizden emin misiniz?')) {
+                // Demo için sadece alert gösteriyoruz
+                alert('Çıkış yapıldı');
+            }
+        });
+    }
+
+    // Add hover effect to navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            if (!this.parentElement.classList.contains('active')) {
+                this.style.transform = 'translateX(5px)';
+            }
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+
+    // Quick links hover effect
+    const quickLinks = document.querySelectorAll('.btn');
+    quickLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Mobile menu toggle (for responsive design)
+    const createMobileMenu = () => {
+        const sidebar = document.querySelector('.sidebar');
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'mobile-menu-toggle';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        
+        document.body.appendChild(menuToggle);
+        
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    };
+
+    // Check if we're on mobile
+    if (window.innerWidth <= 768) {
+        createMobileMenu();
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            if (!document.querySelector('.mobile-menu-toggle')) {
+                createMobileMenu();
+            }
+        } else {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            if (menuToggle) {
+                menuToggle.remove();
+            }
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) {
+                sidebar.classList.remove('active');
+            }
+        }
+    });
+
     // Module card click handler
     const moduleCards = document.querySelectorAll('.module-card');
     moduleCards.forEach(card => {
@@ -41,24 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 parent.style.display = 'none';
             }
-        });
-    });
-
-    // Notifications click handler
-    const notifications = document.querySelector('.notifications');
-    notifications.addEventListener('click', function() {
-        alert('Yeni bildirim bulunmamaktadır');
-    });
-
-    // Add hover effect to navigation links
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateX(5px)';
-        });
-        
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateX(0)';
         });
     });
 
