@@ -8,76 +8,114 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="logo">
-                <img src="./img/logo.jpg" alt="Plearn Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="./index.html"><i class="fas fa-home"></i> Anasayfa</a></li>
-                <li><a href="#"><i class="fas fa-book"></i> Kurslar</a></li>
-                <li><a href="#"><i class="fas fa-tasks"></i> Ödevler</a></li>
-                <li class="active"><a href="./forum.html"><i class="fas fa-comments"></i> Tartışma</a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i> Notlar</a></li>
-            </ul>
-        </nav>
+    <!-- Previous navigation and header code remains the same until course-grid -->
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-bar">
-                <div class="search-bar">
-                    <input type="text" placeholder="Arama yap...">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="user-menu">
-                    <span class="notifications"><i class="fas fa-bell"></i></span>
-                    <div class="user-profile">
-                        <img src="data:image/jpeg;base64,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" alt="User Profile">
-                        <span>Selay Arkün</span>
+    <div class="discussion-container">
+        <!-- Arkadaşlarınla Tartış Section -->
+        <div class="discussion-section">
+            <h2>Arkadaşlarınla Tartış - Elektrik Devreleri</h2>
+            <div class="messages">
+                <div class="message">
+                    <img src="student1.jpg" alt="Ahmet">
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="user-name">Ahmet Yılmaz</span>
+                            <span class="timestamp">14:30</span>
+                        </div>
+                        <p>Seri ve paralel bağlı dirençlerde akım ve gerilim ilişkisini anlayamadım. Yardımcı olabilecek var mı?</p>
                     </div>
                 </div>
-            </header>
-
-            <div class="course-content">
-                <div class="course-header">
-                    <h1>Tartışma</h1>
-                </div>
-
-                <div class="course-grid">
-                    <!-- Arkadaşlarınla Tartış Kartı -->
-                    <div class="module-card">
-                        <div class="module-header">
-                            <h3>Arkadaşlarınla Tartış</h3>
-                            <span class="progress"><i class="fas fa-users"></i> Grup Tartışması</span>
+                <div class="message">
+                    <img src="student2.jpg" alt="Ayşe">
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="user-name">Ayşe Kara</span>
+                            <span class="timestamp">14:35</span>
                         </div>
-                        <div class="module-content">
-                            <ul>
-                                <li><i class="fas fa-comments"></i> Sınıf Arkadaşların</li>
-                                <li><i class="fas fa-user-friends"></i> 5 Aktif Tartışma</li>
-                                <li><i class="fas fa-clock"></i> Son 24 Saat</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Yapay Zeka ile Tartış Kartı -->
-                    <div class="module-card">
-                        <div class="module-header">
-                            <h3>Yapay Zeka ile Tartış</h3>
-                            <span class="progress"><i class="fas fa-robot"></i> AI Asistan</span>
-                        </div>
-                        <div class="module-content">
-                            <ul>
-                                <li><i class="fas fa-brain"></i> Konu Uzmanı</li>
-                                <li><i class="fas fa-lightbulb"></i> Anlık Yardım</li>
-                                <li><i class="fas fa-question-circle"></i> Soru-Cevap</li>
-                            </ul>
-                        </div>
+                        <p>Seri bağlı dirençlerde akım sabittir, gerilim paylaşılır. Paralel bağlı dirençlerde ise gerilim sabittir, akım paylaşılır.</p>
                     </div>
                 </div>
             </div>
-        </main>
+            <div class="message-input">
+                <input type="text" placeholder="Mesajınızı yazın...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- Yapay Zeka ile Tartış Section -->
+        <div class="discussion-section">
+            <h2>Yapay Zeka ile Tartış</h2>
+            <div class="messages" id="ai-messages">
+                <div class="message">
+                    <img src="ai-avatar.jpg" alt="PBot">
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="user-name">PBot</span>
+                            <span class="timestamp">14:00</span>
+                        </div>
+                        <p>Merhaba! Ben PBot. Elektrik devreleri konusunda size yardımcı olabilirim. Sorularınızı sormak için mesajınızın başına @pbot ekleyin.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="message-input">
+                <input type="text" placeholder="@pbot ile mesaj yazın..." id="ai-input">
+                <button onclick="sendAiMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
     </div>
-    <script src="script.js"></script>
 </body>
-</html> 
+<script>
+    function sendAiMessage() {
+    const input = document.getElementById('ai-input');
+    const message = input.value.trim();
+    
+    if (message === '') return;
+    
+    // Add user message
+    addMessage('You', message, true);
+    
+    // Check if message starts with @pbot
+    if (message.toLowerCase().startsWith('@pbot')) {
+        // Specific response for the circuit elements question
+        if (message.toLowerCase().includes('devre elemanlarını açıklar mısın')) {
+            setTimeout(() => {
+                const response = `Temel devre elemanları şunlardır:
+                1. Direnç (R): Elektrik akımına karşı direnç gösterir
+                2. Kondansatör (C): Elektrik yükünü depolar
+                3. Bobin (L): Manyetik enerji depolar
+                4. Güç kaynağı: Devreye enerji sağlar
+                5. Anahtarlar: Devre kontrolünü sağlar`;
+                addMessage('PBot', response, false);
+            }, 1000);
+        } else {
+            // Generic response for other questions
+            setTimeout(() => {
+                addMessage('PBot', 'Lütfen sadece ders ile ilgili sorular sorunuz.', false);
+            }, 1000);
+        }
+    }
+    
+    input.value = '';
+}
+
+function addMessage(sender, text, isUser) {
+    const messagesDiv = document.getElementById('ai-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    
+    messageDiv.innerHTML = `
+        <img src="${isUser ? 'user-avatar.jpg' : 'ai-avatar.jpg'}" alt="${sender}">
+        <div class="message-content">
+            <div class="message-header">
+                <span class="user-name">${sender}</span>
+                <span class="timestamp">${new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'})}</span>
+            </div>
+            <p>${text}</p>
+        </div>
+    `;
+    
+    messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+</script>
+</html>
