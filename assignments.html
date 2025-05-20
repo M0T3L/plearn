@@ -224,21 +224,28 @@
                     </div>
 
                     <!-- Assignment 2 -->
+                    
+                    <!-- Assignment 3: Simülasyon Ödevi -->
                     <div class="assignment-card">
                         <div class="assignment-header">
-                            <h3>Devre Analizi Ödevi</h3>
-                            <span class="assignment-status">Yakında</span>
+                            <h3>Simülasyon Ödevi</h3>
+                            <span class="assignment-status">Aktif</span>
                         </div>
                         <div class="assignment-content">
                             <div class="assignment-info">
                                 <p class="assignment-description">
-                                    Bu ödev henüz aktif değil. 20 Mayıs'ta açılacaktır.
+                                    Bu ödevde, bir simülasyon çalışması yapmanız beklenmektedir. Aşağıdaki butona tıklayarak ödevinizi (fotoğraf olarak) yükleyebilirsiniz. (Demo amaçlıdır)
                                 </p>
                                 <div class="assignment-meta">
-                                    <span><i class="fas fa-calendar"></i> Teslim: 25 Mayıs 2024</span>
-                                    <span><i class="fas fa-clock"></i> Süre: 2 saat</span>
+                                    <span><i class="fas fa-calendar"></i> Teslim: 18 Mayıs 2024</span>
+                                    <span><i class="fas fa-clock"></i> Süre: 1 saat</span>
                                     <span><i class="fas fa-star"></i> Puan: 100</span>
                                 </div>
+                            </div>
+                            <div class="assignment-actions">
+                                <button class="assignment-btn primary" onclick="openUploadModal()">
+                                    <i class="fas fa-upload"></i> Ödev Yükle
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -251,6 +258,19 @@
                         <iframe src="https://phet.colorado.edu/sims/html/circuit-construction-kit-dc/latest/circuit-construction-kit-dc_tr.html" allowfullscreen></iframe>
                     </div>
                 </div>
+
+                <!-- Upload Modal (Hidden by default) -->
+                <div id="uploadModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+                    <div style="background:white; padding:30px; border-radius:10px; max-width:400px; margin:auto; position:relative;">
+                        <h3>Simülasyon Ödevi Yükle</h3>
+                        <form id="demoUploadForm" onsubmit="return false;">
+                            <input type="file" accept="image/*" style="margin-bottom:15px;" required><br>
+                            <button class="assignment-btn primary" style="width:100%; margin-bottom:10px;">Yükle (Demo)</button>
+                            <button type="button" class="assignment-btn secondary" style="width:100%;" onclick="closeUploadModal()">Kapat</button>
+                        </form>
+                        <div id="uploadSuccess" style="display:none; color:green; margin-top:10px;">Yükleme başarılı! (Demo)</div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -261,6 +281,16 @@
             simulationContainer.style.display = 'block';
             simulationContainer.scrollIntoView({ behavior: 'smooth' });
         }
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
+        }
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+            document.getElementById('uploadSuccess').style.display = 'none';
+        }
+        document.getElementById('demoUploadForm')?.addEventListener('submit', function() {
+            document.getElementById('uploadSuccess').style.display = 'block';
+        });
     </script>
     <script src="script.js"></script>
 </body>

@@ -47,6 +47,23 @@
                             <p>Şu anda "Basit Elektrik Devreleri" ünitesindesiniz. Ders içeriğine "Konular" sayfasından ulaşabilirsiniz.</p>
                         </div>
                     </div>
+                    <!-- Icebreaker Chat Area -->
+                    <div class="icebreaker-chat" style="margin-top:32px; background:#fff; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.08); padding:24px; max-width:500px;">
+                        <h3 style="font-size:18px; color:#2c3e50; margin-bottom:18px;">Kendini tanıt ve en çok kullandığın elektrikli aleti söyle</h3>
+                        <div class="chat-messages" style="max-height:220px; overflow-y:auto; margin-bottom:18px;">
+                            <div style="margin-bottom:12px;"><b>Ayşe:</b> Merhaba, ben Ayşe. En çok saç kurutma makinesini kullanıyorum.</div>
+                            <div style="margin-bottom:12px;"><b>Mehmet:</b> Selam, ben Mehmet. Bilgisayarım olmadan yapamam!</div>
+                            <div style="margin-bottom:12px;"><b>Elif:</b> Ben Elif, evde en çok elektrikli süpürgeyi kullanıyorum.</div>
+                            <div style="margin-bottom:12px;"><b>Burak:</b> Burak ben, telefonum en çok kullandığım alet.</div>
+                            <div style="margin-bottom:12px;"><b>Zeynep:</b> Merhaba, ben Zeynep. Kahve makinesi favorim.</div>
+                            <div style="margin-bottom:12px;"><b>Ali:</b> Ben Ali, en çok televizyon izlerim.</div>
+                            <div style="margin-bottom:12px;"><b>Deniz:</b> Deniz ben, tabletimle vakit geçirmeyi seviyorum.</div>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <input type="text" placeholder="Mesaj yaz..." disabled style="flex:1; padding:10px; border-radius:6px; border:1px solid #ccc; background:#f5f6fa; color:#aaa;" />
+                            <button disabled style="padding:10px 18px; border-radius:6px; background:#3498db; color:#fff; border:none; cursor:not-allowed;">Gönder</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="user-menu">
                     <span class="notifications"><i class="fas fa-bell"></i></span>
@@ -60,5 +77,122 @@
         </main>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Tutorial steps data
+        const tutorialSteps = [
+            {
+                selector: '.nav-links li.active',
+                text: 'Burası Anasayfa butonu. Buradan ana ekrana dönebilirsiniz.'
+            },
+            {
+                selector: '.nav-links a[href="topics.html"]',
+                text: 'Konular butonuna tıklayarak ders içeriklerine ulaşabilirsiniz.'
+            },
+            {
+                selector: '.nav-links a[href="assignments.html"]',
+                text: 'Ödevler butonuna tıklayarak ödevlerinizi görebilirsiniz.'
+            },
+            {
+                selector: '.nav-links a[href="exams.html"]',
+                text: 'Sınavlar butonuna tıklayarak sınavlara ulaşabilirsiniz.'
+            },
+            {
+                selector: '.nav-links a[href="forum.html"]',
+                text: 'Tartışma butonundan foruma ulaşabilirsiniz.'
+            },
+            {
+                selector: '.nav-links a[href="notes.html"]',
+                text: 'Notlar butonundan kendi notlarınıza ulaşabilirsiniz.'
+            },
+            {
+                selector: '.quick-links .btn.primary',
+                text: 'Buradan hızlıca konulara gidebilirsiniz.'
+            },
+            {
+                selector: '.quick-links .btn.secondary',
+                text: 'Buradan hızlıca ödevlere gidebilirsiniz.'
+            },
+            {
+                selector: '.user-menu',
+                text: 'Buradan profilinizi ve bildirimlerinizi görebilirsiniz.'
+            }
+        ];
+
+        let tutorialStep = 0;
+        function showTutorialStep(idx) {
+            const step = tutorialSteps[idx];
+            let highlight = document.querySelector(step.selector);
+            let overlay = document.getElementById('tutorialOverlay');
+            let box = document.getElementById('tutorialBox');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'tutorialOverlay';
+                overlay.style.position = 'fixed';
+                overlay.style.top = 0;
+                overlay.style.left = 0;
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+                overlay.style.background = 'rgba(0,0,0,0.5)';
+                overlay.style.zIndex = 2000;
+                overlay.style.display = 'flex';
+                overlay.style.alignItems = 'center';
+                overlay.style.justifyContent = 'center';
+                document.body.appendChild(overlay);
+            }
+            if (!box) {
+                box = document.createElement('div');
+                box.id = 'tutorialBox';
+                box.style.background = 'white';
+                box.style.padding = '30px';
+                box.style.borderRadius = '12px';
+                box.style.maxWidth = '350px';
+                box.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+                box.style.position = 'absolute';
+                overlay.appendChild(box);
+            }
+            // Position box near highlight
+            if (highlight) {
+                const rect = highlight.getBoundingClientRect();
+                box.style.top = (rect.bottom + 10) + 'px';
+                box.style.left = (rect.left) + 'px';
+                box.style.position = 'fixed';
+            } else {
+                box.style.top = '50%';
+                box.style.left = '50%';
+                box.style.transform = 'translate(-50%, -50%)';
+            }
+            box.innerHTML = `<div style='margin-bottom:15px;'>${step.text}</div>
+                <div style='display:flex; gap:10px; justify-content:flex-end;'>
+                    <button id='tutorialPrev' ${idx === 0 ? 'disabled' : ''} style='padding:6px 14px; border-radius:5px; border:none; background:#bdc3c7; color:white;'>Geri</button>
+                    <button id='tutorialNext' ${idx === tutorialSteps.length-1 ? 'disabled' : ''} style='padding:6px 14px; border-radius:5px; border:none; background:#3498db; color:white;'>İleri</button>
+                    <button id='tutorialClose' style='padding:6px 14px; border-radius:5px; border:none; background:#e74c3c; color:white;'>Kapat</button>
+                </div>`;
+            overlay.style.display = 'flex';
+            // Scroll to highlight
+            if (highlight) highlight.scrollIntoView({behavior:'smooth', block:'center'});
+            document.getElementById('tutorialPrev').onclick = () => {
+                if (tutorialStep > 0) {
+                    tutorialStep--;
+                    showTutorialStep(tutorialStep);
+                }
+            };
+            document.getElementById('tutorialNext').onclick = () => {
+                if (tutorialStep < tutorialSteps.length-1) {
+                    tutorialStep++;
+                    showTutorialStep(tutorialStep);
+                }
+            };
+            document.getElementById('tutorialClose').onclick = () => {
+                overlay.style.display = 'none';
+                localStorage.setItem('plearnTutorialDone', '1');
+            };
+        }
+        // Show tutorial only on first visit
+        window.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('plearnTutorialDone')) {
+                setTimeout(()=>showTutorialStep(0), 500);
+            }
+        });
+    </script>
 </body>
 </html> 

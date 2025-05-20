@@ -351,7 +351,7 @@
                         <div class="exam-info">
                             <div class="info-item">
                                 <i class="fas fa-clock"></i>
-                                <span>30 dakika</span>
+                                <span>10 dakika</span>
                             </div>
                             <div class="info-item">
                                 <i class="fas fa-question-circle"></i>
@@ -452,9 +452,13 @@
                 <button class="close-modal" onclick="closeExamModal()">&times;</button>
             </div>
             <div class="exam-questions" id="examQuestions">
-                <!-- Questions will be added here dynamically -->
+                <!-- Wordwall embed for Basit Elektrik Devreleri Sınavı -->
+                <div id="wordwallEmbed" style="display:none;">
+                    <iframe src="https://wordwall.net/tr/embed/78efbe4b3a5f4d8b8d0cca434194b239?themeId=1" width="700" height="500" frameborder="0" allowfullscreen style="width:100%;max-width:700px;height:500px;border-radius:12px;"></iframe>
+                </div>
+                <!-- Questions will be added here dynamically for other exams -->
             </div>
-            <div class="exam-modal-footer">
+            <div class="exam-modal-footer" id="examModalFooter">
                 <div class="exam-progress">
                     Soru <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
                 </div>
@@ -520,8 +524,16 @@
             currentQuestionIndex = 0;
             userAnswers = new Array(examQuestions.length).fill(null);
             showExamModal();
-            renderQuestion();
-            updateNavigationButtons();
+            if (examId === 1) {
+                // Show Wordwall embed for Basit Elektrik Devreleri Sınavı
+                document.getElementById('wordwallEmbed').style.display = 'block';
+                document.getElementById('examModalFooter').style.display = 'none';
+                document.getElementById('examQuestions').innerHTML = document.getElementById('wordwallEmbed').outerHTML;
+            } else {
+                document.getElementById('examModalFooter').style.display = '';
+                renderQuestion();
+                updateNavigationButtons();
+            }
         }
 
         function showExamModal() {

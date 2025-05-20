@@ -300,12 +300,55 @@
                                     </div>
                                     <div class="topic-actions">
                                         <button class="topic-btn secondary" disabled><i class="fas fa-arrow-left"></i> Önceki</button>
-                                        <button class="topic-btn primary" onclick="showVideo()"><i class="fas fa-play"></i> Dersi İzle</button>
+                                        <button class="topic-btn primary" onclick="showVideo(0)"><i class="fas fa-play"></i> Dersi İzle</button>
                                         <button class="topic-btn secondary" disabled><i class="fas fa-arrow-right"></i> Sonraki</button>
                                         <button class="topic-btn primary" onclick="window.location.href='assignments.html'"><i class="fas fa-tasks"></i> Ödeve Git</button>
                                     </div>
                                 </li>
+                                <li class="topic-item">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="topic-info">
+                                        <div class="topic-title">Basit Elektrik Devreleri Video 2</div>
+                                        <div class="topic-description">Ek video 1</div>
+                                    </div>
+                                    <div class="topic-actions">
+                                        <button class="topic-btn primary" onclick="showVideo(1)"><i class="fas fa-play"></i> Dersi İzle</button>
+                                    </div>
+                                </li>
+                                <li class="topic-item">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="topic-info">
+                                        <div class="topic-title">Basit Elektrik Devreleri Video 3</div>
+                                        <div class="topic-description">Ek video 2</div>
+                                    </div>
+                                    <div class="topic-actions">
+                                        <button class="topic-btn primary" onclick="showVideo(2)"><i class="fas fa-play"></i> Dersi İzle</button>
+                                    </div>
+                                </li>
+                                <li class="topic-item">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="topic-info">
+                                        <div class="topic-title">Basit Elektrik Devreleri Video 4</div>
+                                        <div class="topic-description">Ek video 3</div>
+                                    </div>
+                                    <div class="topic-actions">
+                                        <button class="topic-btn primary" onclick="showVideo(3)"><i class="fas fa-play"></i> Dersi İzle</button>
+                                    </div>
+                                </li>
+                                <li class="topic-item">
+                                    <i class="fas fa-play-circle"></i>
+                                    <div class="topic-info">
+                                        <div class="topic-title">Basit Elektrik Devreleri Video 5</div>
+                                        <div class="topic-description">Ek video 4</div>
+                                    </div>
+                                    <div class="topic-actions">
+                                        <button class="topic-btn primary" onclick="showVideo(4)"><i class="fas fa-play"></i> Dersi İzle</button>
+                                    </div>
+                                </li>
                             </ul>
+                            <div style="margin-top: 20px;">
+                                <a href="konu.pdf" download class="topic-btn primary"><i class="fas fa-file-download"></i> Konu Anlatımı PDF İndir</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -313,20 +356,41 @@
                 <!-- Video Container (Hidden by default) -->
                 <div class="video-container" id="videoContainer" style="display: none;">
                     <h3>Basit Elektrik Devreleri - Ders Videosu</h3>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/iZYedWOERN0" allowfullscreen></iframe>
+                    <div class="video-wrapper" id="videoWrapper">
+                        <iframe id="videoFrame" src="https://www.youtube.com/embed/NJc3Ppqmp3o?si=qbdBF6ypcaJwTe5W" allowfullscreen></iframe>
                     </div>
                 </div>
+
+                
             </div>
         </main>
     </div>
 
     <script>
-        function showVideo() {
+        const videoLinks = [
+            "https://www.youtube.com/embed/NJc3Ppqmp3o?si=qbdBF6ypcaJwTe5W",
+            "https://www.youtube.com/embed/wnjk0Daza1M",
+            "https://www.youtube.com/embed/7-X6789ulNg",
+            "https://www.youtube.com/embed/p6d5U3kaYQ4",
+            "https://www.youtube.com/embed/xGHAZjTo-H0"
+        ];
+        function showVideo(idx = 0) {
             const videoContainer = document.getElementById('videoContainer');
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.src = videoLinks[idx];
             videoContainer.style.display = 'block';
             videoContainer.scrollIntoView({ behavior: 'smooth' });
         }
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
+        }
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+            document.getElementById('uploadSuccess').style.display = 'none';
+        }
+        document.getElementById('demoUploadForm')?.addEventListener('submit', function() {
+            document.getElementById('uploadSuccess').style.display = 'block';
+        });
     </script>
     <script src="script.js"></script>
 </body>
